@@ -21,7 +21,7 @@ pd.set_option('display.max_colwidth', -1)
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 
-curruser = 'ektov1-av_ca-sbrf-ru'
+curruser = ''
 curruser_main = os.environ.get('USER')
 
 isUseOptWorkspace = False
@@ -1214,7 +1214,7 @@ model_gensim.build_vocab(sentences = MyIter())
 model_gensim.train(sentences=MyIter(), total_examples=model_gensim.corpus_count, epochs=12)
 
 model_gensim.wv.save_word2vec_format(os.path.join(filepath, filename))
-subprocess.call(['hdfs', 'dfs', '-put', '-f', os.path.join(filepath, filename), '/user/ufimtsev1-ys_ca-sbrf-ru/FT/'])
+subprocess.call(['hdfs', 'dfs', '-put', '-f', os.path.join(filepath, filename), '/user/ektov/FT/'])
 
 dffasttext = dffasttext.dropna(subset=['text_norm'])
 X = dffasttext['text_norm']
@@ -1231,7 +1231,7 @@ filename = 'email_sendsay_TfIdf_vect.pkl'
 joblib.dump(embed, os.path.join(filepath, filename), compress=9)
 
 #move to hdfs
-subprocess.call(['hdfs', 'dfs', '-put', '-f', os.path.join(filepath, filename), '/user/ufimtsev1-ys_ca-sbrf-ru/'])
+subprocess.call(['hdfs', 'dfs', '-put', '-f', os.path.join(filepath, filename), '/user/ektov/'])
 
 #drop file in local dir
 subprocess.call(['rm', '-f', os.path.join(filepath, filename)])
@@ -1258,15 +1258,15 @@ colexp.remove('text_norm')
 sp.sc.addFile('./../src/corpora_transform_main.py')
 
 
-#!hdfs dfs -put model/ft_vector /user/ufimtsev1-ys_ca-sbrf-ru/
+#!hdfs dfs -put model/ft_vector /user/ektov/
 hdfsfile = 'hdfs:///user/{}/FT/ft_vector'.format(curruser)
 sp.sc.addFile(hdfsfile)
 
-# !hdfs dfs -put model/ft_vector.vectors_ngrams.npy /user/ufimtsev1-ys_ca-sbrf-ru/
-# hdfsfile = 'hdfs:///user/ufimtsev1-ys_ca-sbrf-ru/ft_vector.vectors_ngrams.npy'
+# !hdfs dfs -put model/ft_vector.vectors_ngrams.npy /user/ektov/
+# hdfsfile = 'hdfs:///user/ektov/ft_vector.vectors_ngrams.npy'
 # sp.sc.addFile(hdfsfile)
 
-#!hdfs dfs -put model/ft.word2vec /user/ufimtsev1-ys_ca-sbrf-ru/
+#!hdfs dfs -put model/ft.word2vec /user/ektov/
 hdfsfile = 'hdfs:///user/{}/FT/ft.word2vec'.format(curruser)
 sp.sc.addFile(hdfsfile)
 
@@ -1409,7 +1409,7 @@ sdf_proc = sdf_proc.withColumn('idx', f.monotonically_increasing_id())\
 resid = sdf_proc.select('row_num', 'target')
 
 # drop old csv file
-subprocess.call(['hdfs', 'dfs', '-rm', '-r', 'f', '-skipTrash', '/user/ufimtsev1-ys_ca-sbrf-ru/csv/*'])
+subprocess.call(['hdfs', 'dfs', '-rm', '-r', 'f', '-skipTrash', '/user/ektov/csv/*'])
 
 resid_sdf = sdf_proc.select('row_num', 'target').toPandas()
 
@@ -1418,7 +1418,7 @@ skf = StratifiedKFold(n_splits=n_splits, random_state=42, shuffle=True)
 # s3 = StratifiedShuffleSplit(n_splits=n_splits, random_state=42, test_size=0.17)
 split_tpl = skf.split(resid_sdf['row_num'].values, resid_sdf['target'].values)
 
-path_to_hdfs = os.path.join('/user', 'ufimtsev1-ys_ca-sbrf-ru', 'csv')
+path_to_hdfs = os.path.join('/user', 'ektov', 'csv')
 
 for _, row_index in tqdm_notebook(split_tpl, total=n_splits): 
     res = row_index

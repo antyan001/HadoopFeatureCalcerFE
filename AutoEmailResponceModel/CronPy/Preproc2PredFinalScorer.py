@@ -15,7 +15,7 @@ pd.set_option('display.max_colwidth', -1)
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 
-curruser = 'ektov1-av_ca-sbrf-ru'
+curruser = 'ektov'
 curruser_main = os.environ.get('USER')
 
 isUseOptWorkspace = False
@@ -1153,18 +1153,18 @@ colexp.remove('text_norm')
 
 sp.sc.addFile('./../src/corpora_transform_main.py')
 
-#!hdfs dfs -put model/ft_vector /user/ufimtsev1-ys_ca-sbrf-ru/
+#!hdfs dfs -put model/ft_vector /user/ektov/
 hdfsfile = 'hdfs:///user/{}/FT/ft_vector'.format(curruser)
 try:
     sp.sc.addFile(hdfsfile)
 except:
     print('File exists in directory')
 
-# !hdfs dfs -put model/ft_vector.vectors_ngrams.npy /user/ufimtsev1-ys_ca-sbrf-ru/
-# hdfsfile = 'hdfs:///user/ufimtsev1-ys_ca-sbrf-ru/ft_vector.vectors_ngrams.npy'
+# !hdfs dfs -put model/ft_vector.vectors_ngrams.npy /user/ektov/
+# hdfsfile = 'hdfs:///user/ektov/ft_vector.vectors_ngrams.npy'
 # sp.sc.addFile(hdfsfile)
 
-#!hdfs dfs -put model/ft.word2vec /user/ufimtsev1-ys_ca-sbrf-ru/
+#!hdfs dfs -put model/ft.word2vec /user/ektov/
 hdfsfile = 'hdfs:///user/{}/FT/ft.word2vec'.format(curruser)
 sp.sc.addFile(hdfsfile)
 
