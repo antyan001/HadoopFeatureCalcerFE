@@ -1,4 +1,4 @@
-# User Defined Feature Calculation on Hadoop and Training Boosting Models using PySpark Broadcasting  
+# User Defined Features Calculation and Training Boosting Models with pySpark  
 
 *PROJECT STRUCTURE*:
 - `GoogleAnalyticsClickstreamPreproc`: GA notebooks revealing UDF for `features calculation` based on user' clickstream data: FE with monthly, weekly, daily frequencies  
