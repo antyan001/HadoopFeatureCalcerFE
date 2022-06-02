@@ -9,7 +9,7 @@ import traceback
 class Ssh(object):
 
     def __init__(self, 
-                 username = 'ektov-av', 
+                 username = '', 
                  password = None, 
                  host     = None, 
                  port     = 22,
