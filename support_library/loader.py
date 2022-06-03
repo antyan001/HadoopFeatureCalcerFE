@@ -46,10 +46,10 @@ class Loader(object):
     """
     def __init__(self, init_dsn=False, encoding='cp1251', sep=','):
         self.tns_names = {
-        'sasprod': cx_Oracle.makedsn('', 1521, 'sasprod'),
-        'iskra4' : cx_Oracle.makedsn('',   1521, 'iskra4'),
-        'iskra3' : cx_Oracle.makedsn('',  1521, 'iskra3'),
-        'iskra2' : cx_Oracle.makedsn('',  1521, 'iskra2'),
+        'sasprod': cx_Oracle.makedsn('', 1521, ''),
+        'iskra4' : cx_Oracle.makedsn('',   1521, ''),
+        'iskra3' : cx_Oracle.makedsn('',  1521, ''),
+        'iskra2' : cx_Oracle.makedsn('',  1521, ''),
         'iskra1' : """(DESCRIPTION =
            (LOAD_BALANCE=off)
              (FAILOVER = ON)
@@ -68,7 +68,7 @@ class Loader(object):
     def _get_dsn(self, iskra):
         return self.tns_names[iskra]
 
-    def get_dataframe(self, query, login='iskra', iskra='iskra4', password='iskraurskb!2018'):
+    def get_dataframe(self, query, login='', iskra='iskra4', password=''):
         """
         Return dataframe  for specified query.
 
